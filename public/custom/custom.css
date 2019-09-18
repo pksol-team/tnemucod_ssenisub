@@ -1,0 +1,722 @@
+.alert .close {
+    left: 15px;
+    background: none;
+    color: #fff;
+}
+
+.alert.alert-success {
+	margin: 12px 0;
+}
+
+.alert.alert-danger {
+	margin: 12px 0;
+}
+
+.modal .form-group {
+	display: block;
+	margin-bottom: 15px;
+}
+
+.modal .form-group label {
+    color: #333;
+}
+
+.modal .form-group select.form-control {
+	width: 100%;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: none;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.dropdown-menu li.presentation a {
+    padding: 8px 14px;
+    color: #555;
+    text-decoration: none;
+    display: block;
+    clear: both;
+    font-weight: 300;
+    line-height: 18px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.dropdown-menu li.presentation a:hover {
+    background-color: #f6f6f6;
+}
+
+.dropdown-menu li.presentation a .description {
+    font-size: 11px;
+    padding-left: 25px;
+}
+
+.dropdown-menu li.presentation a i {
+	margin-right: 7px;
+}
+
+.app-container .content-container .side-menu .navbar-header .navbar-brand .logo-icon-container {
+    width: 100%;
+}
+
+.app-container .content-container .side-menu .navbar-header .navbar-brand img {
+}
+
+body.login .copy {
+    width: auto;
+    padding: 49px 30px 12px;
+}
+body.login .logo {
+    max-width: 93px;
+}
+
+.voyager .side-menu .navbar-header {
+    background: #dad4d4;
+    border-color: #cebcbc;
+}
+
+span.toggle_down{
+    position: relative;
+    top: 8px;
+    right: 7px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.nav.navbar-nav ul.sub-menu {
+    display: none;
+    padding-left: 20px: 
+}
+
+
+/*****************************************Begin Procedure Page****************************************************/
+
+.procedure_actions .panel-heading {
+    padding:10px;
+}
+
+.procedure_actions .panel-body {
+    border: 1px solid #62a8ea !important;
+}
+
+
+.procedure_actions .panel-body a {
+    text-align: left;
+    margin: 10px 0;
+    margin-right: 40%;
+}
+
+.procedure_actions .panel-body a.btn-yellow {
+    background: #ffc400;
+    color: #000;
+}
+
+.procedure_actions .editing_procedure .panel-heading {
+    border: 1px solid #e0e0e0 !important;
+}
+
+.procedure_actions .editing_procedure{
+    border: 1px solid #e0e0e0 !important;
+}
+
+.procedure_actions .editing_procedure .panel-heading {
+    background: #ededed !important;
+}
+
+.procedure_actions .editing_procedure .panel-body {
+    text-align: center;
+    border: 1px solid #fff !important;
+}
+
+.procedure_actions .editing_procedure .panel-body a {
+    text-align: left;
+    margin: 10px 0;
+    margin-right: 7px;
+}
+
+.procedure_actions .editing_procedure .panel-body a:last-child {
+    margin-right: 0;
+}
+
+.portlet.box.green-meadow {
+    border: 1px solid #2ae0bb;
+    border-top: 0;
+}
+
+.portlet.box.green-meadow > .portlet-title {
+    background-color: #1BBC9B;
+}
+
+.portlet.box > .portlet-title {
+    border-bottom: 0;
+    padding: 0 10px;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+/*
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080"; 
+}*/
+
+
+#procedure-nestable-container .caption_proc {
+    display: inline-block;
+}
+#procedure-nestable-container .tools {
+    display: inline-block;
+    float: right;
+}
+
+#procedure-nestable-container .tools a{
+    color: #fff !important;
+    font-size: 14px;
+}
+
+#procedure-nestable-container .panel-heading {
+    border-bottom: #1bbc9b !important;
+    background-color: #1bbc9b !important;
+}
+
+#procedure-nestable-container .panel-heading h4 .caption_proc{
+    color: #fff !important;
+}
+
+#procedure-nestable-container h4.panel-title {
+    padding: 12px 30px 12px 15px !important;
+}
+
+.portlet.grey-cascade .add_cascades {
+    margin-top: 20px;
+    background-color: #95A5A6;
+    padding: 10px 13px;
+}
+
+.portlet.grey-cascade .add_cascades h4{
+    color:#fff;
+}
+
+.portlet.solid {
+    padding: 0 10px 10px 10px;
+    border: 0px;
+}
+
+.procedure_view_page .modal .nav-tabs li.active a, .procedure_view_page .modal .nav-tabs li.active a:hover, .procedure_view_page .modal .nav-tabs li.active a:focus {
+    border-bottom: 0 !important;
+}
+
+#block-editor-modal-container div#mceu_20-body button, #block-editor-modal-container div#mceu_20-body button i {
+    color: #6b6868 !important;
+}
+
+#block-editor-modal-container div.mce-widget button, #block-editor-modal-container div.mce-widget button i {
+    color: #6b6868 !important;
+}
+
+#block-editor-modal-container .mce-container.mce-btn-group {
+    padding: 0 !important;
+    margin: 0 !important;
+    border-right: 1px solid #eeeeee;
+}
+
+#block-editor-modal-container .mce-container-body #mceu_22, #block-editor-modal-container .mce-container-body #mceu_26, #block-editor-modal-container .mce-container-body #mceu_14, #block-editor-modal-container .mce-container-body #mceu_15 {
+    display: none !important;
+}
+
+[role='menubar'] {
+    display: none !important;
+}
+
+#block-editor-modal-container .mce-container-body #mceu_21, #block-editor-modal-container .mce-container-body #mceu_19 {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#block-editor-modal-container #mceu_17.mce-panel {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    /*height: 70px !important;*/
+}
+
+#block-editor-modal-container .mce-edit-area iframe {
+    max-height: 100px !important;
+}
+
+.ui-sortable-placeholder {
+  border: 1px dashed #000;
+  width: 100%;
+}
+
+#block-video-modal-container .nav-tabs>li.active>a:hover {
+    background-color: #ddd !important;
+}
+
+#block-video-modal-container .nav-tabs>li.active>a, #block-video-modal-container .nav-tabs>li.active>a:focus  {
+    color: #fff;
+    background-color: #62a8ea;
+    border-color: transparent transparent #62a8ea; 
+}
+
+.dropzone.needsclick.dz-clickable.dz-message {
+    text-align: center;
+    padding-top: 60px;
+}
+.progress {
+    margin-top: 18px;
+    margin-bottom: 0;
+    display: none;
+}
+
+.btn-image-align {
+    background-color: #fff !important;
+}
+
+.btn-image-align.selected {
+    background-color: #dadada !important;
+}
+
+.image-show- {
+    overflow: hidden;
+    text-align: center;
+}
+
+.download_attachment {
+    color: #000;
+    text-decoration: underline;
+}
+.tools-deleted {
+
+    position: relative;
+    bottom: 7px;
+}
+
+.tools-deleted a{
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+}
+/*****************************************End Procedure Page****************************************************/
+
+/*****************************************Start Procedure View Page****************************************************/
+#accordion_proc_view .comm-edit-div {
+    position: relative;
+    left: 10px;
+    top: 0px;
+}
+#accordion_proc_view a.btn.btn-xs {
+    position: relative;
+    padding: 2px 6px;
+    margin: 0 10px 0 0;
+}
+#accordion_proc_view a.btn.btn-xs span.badge {
+    padding: 1px 4px;
+    font-size: 11px;
+    position: absolute;
+    background: #303840;
+}
+
+#accordion_proc_view .modal-dialog {
+    width: 680px;
+    margin: 30px auto;
+}
+
+.chat-form {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e9eff3;
+    overflow: hidden;
+    clear: both;
+}
+
+.chat-form .input-cont {
+    margin-right: 40px;
+}
+.chat-form .input-cont .form-control {
+    border: 1px solid #ddd;
+    width: 100% !important;
+    margin-top: 0;
+    background-color: #fff !important;
+}
+.chat-form .btn-cont {
+    margin-top: -42px;
+    position: relative;
+    float: right;
+    width: 44px;
+}
+
+.chat-form .btn-cont .arrow {
+    position: absolute;
+    top: 17px;
+    right: 43px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #4d90fe;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.chat-form .btn-cont .btn {
+    margin-top: 8px;
+}
+.chat-form .blue.btn {
+    padding: 5px 15px;
+    color: #FFFFFF;
+    background-color: #3598dc;
+}
+.chats li {
+    list-style: none;
+    padding: 5px 7px;
+    margin: 10px auto;
+    font-size: 12px;
+}
+.chats li.out .avatar {
+    float: right;
+    margin-left: 10px;
+    height: 45px;
+    width: 45px;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+
+.chats li.out .message {
+    border-right: 2px solid #F3565D;
+    margin-right: 65px;
+    background: #fafafa;
+    text-align: right;
+    display: block;
+    padding: 5px;
+    position: relative;
+}
+
+.chats li.out .message .arrow {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -8px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #F3565D;
+}
+
+.chats li.out .name, .chats li.out .datetime {
+    text-align: right;
+}
+
+.chats li.out a.comment-delete:hover {
+    color: #cd2027;
+}
+
+.chats li.in .avatar {
+    float: left;
+    margin-right: 10px;
+    height: 45px;
+    width: 45px;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+
+.chats li.in .message {
+    text-align: left;
+    border-left: 2px solid #1BBC9B;
+    margin-left: 65px;
+    background: #fafafa;
+}
+
+.chats li .message {
+    display: block;
+    padding: 5px;
+    position: relative;
+}
+
+.chats li.in .message .arrow {
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #1BBC9B;
+}
+
+.chats li .body {
+    display: block;
+}
+
+#accordion_proc_view .chats.comments-list {
+    height: 300px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: auto;
+}
+
+.modal-body .nav-tabs>li.active>a:hover {
+    background-color: #a09999;
+}
+
+#block-editor-modal-container .modal-dialog {
+    width: 700px;
+}
+
+#block-image-modal-container .modal-dialog {
+    width: 730px;
+}
+#block-attachment-modal-container .modal-dialog {
+    width: 730px;
+}
+
+#block-procedure-modal-container .modal-dialog {
+    width: 750px;
+}
+
+#block-video-modal-container .modal-dialog {
+    width: 725px;
+}
+/*****************************************End Procedure View Page****************************************************/
+/*****************************************Start Notification Page****************************************************/
+.feeds {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: block; 
+    width: 100%;
+    float: left;
+}
+.feeds li {
+    background-color: #e0e0e0;
+    color: #82949a;
+    margin-bottom: 7px;
+    display: inline-block;
+    width: 100%;
+}
+
+.feeds li .label.label-sm {
+    float: left;
+    margin: 0;
+    margin-right: 20px;
+    padding: 6px;
+}
+.feeds li .label.label-sm i{
+    font-size: 18px;
+}
+
+.feeds li .desc {
+    float: left;
+    width: 80%;
+    padding: 5px 0;
+}
+.feeds li .date {
+    float: right;
+    padding: 5px 12px;
+}
+
+.caption.caption-md span.caption-subject {
+    font-size: 14px;
+    font-weight: bold;
+    color: #578ebe !important;
+    margin-left: 18px;
+    text-transform: uppercase;
+}
+
+.dropdown_notification ul.external {
+    width: 300px !important;
+    padding: 0 !important;
+}
+
+.dropdown_notification ul.external li{
+    padding: 0;
+    margin:0;
+}
+
+.dropdown_notification ul.external li:first-child {
+    background: #ddd;
+    padding: 10px;
+    margin-top: 0;
+}
+
+.dropdown_notification ul.external li:first-child p{
+    margin-bottom: 0;
+}
+
+.dropdown_notification ul.external li:first-child p a{
+    margin-left: 22px;
+}
+
+.dropdown_notification ul.internal{
+    height: auto;
+    max-height: 375px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: auto;
+}
+
+.dropdown_notification ul.internal li{
+    background: none !important;
+    border-bottom: 1px solid #EFF2F6 !important;
+}
+
+.dropdown_notification ul.internal li:hover{
+    background: #f8f9fa !important;
+}
+.dropdown_notification ul.internal li a{
+    color: #000 !important;
+}
+
+.dropdown_notification ul.internal li span.message{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.dropdown_notification ul.internal li span.time{
+    color: #a9a0a0 !important;
+    float: right;
+}
+
+.dropdown_notification ul.internal li {
+    padding: 10px;
+}
+
+.dropdown_notification ul.internal li a > div{
+    font-size: 12px;
+}
+
+.dropdown_notification .dropdown_notification_bell i{
+    position: absolute;
+}
+
+.dropdown_notification .dropdown_notification_bell span.badge{
+    position: relative;
+    bottom: 14px;
+    left: 9px;
+    background: #ec2b2b !important;
+    padding: 2px 5px !important;
+    font-size: 12px !important;
+}
+
+.vis_hid {
+    visibility: hidden;
+}
+
+
+/*****************************************End Notification Page****************************************************/
+
+
+.submitApproval {
+    width: 44%;
+    margin: 0 auto !important;
+    background: #ef7070;
+    border-left: none !important;
+}
+
+.submitApproval form {
+    text-align: center;
+}
+
+.submitApproval.alert .close {
+    left: 15px !important;
+    top: -73px !important;
+}
+.dashboard_document .panel-body {
+    padding-top: 20px;
+    min-height: 210px;
+    max-height: 210px;
+    overflow-y: auto;
+}
+
+.dashboard_document .panel-heading {
+    padding: 8px;
+}
+.dashboard_document .panel-body .page-bar ul{
+    margin-left: 10px;
+}
+.dashboard-stat.blue {
+    background-color: #3598dc;
+}
+.dashboard-stat {
+    display: block;
+    margin-bottom: 25px;
+    overflow: hidden;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+.dashboard-stat::before, .dashboard-stat::after {
+    content: " ";
+    display: table;
+}
+.dashboard-stat .visual {
+    width: 80px;
+    height: 80px;
+    display: block;
+    float: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    line-height: 35px;
+}
+.dashboard-stat.blue .details .number {
+    color: #FFFFFF;
+}
+.dashboard-stat .details .number {
+    padding-top: 25px;
+    text-align: right;
+    font-size: 34px;
+    line-height: 36px;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    font-weight: 300;
+}
+.dashboard-stat.blue .details .desc {
+    color: #FFFFFF;
+    opacity: 1;
+}
+.dashboard-stat .details .desc {
+    text-align: right;
+    font-size: 16px;
+    letter-spacing: 0px;
+    font-weight: 300;
+}
+.dashboard-stat.blue .more {
+    color: #FFFFFF;
+    background-color: #258fd7;
+}
+.dashboard-stat .more {
+    clear: both;
+    display: block;
+    padding: 6px 10px 6px 10px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 11px;
+    opacity: 0.7;
+}
+.dashboard-stat.blue .visual > i {
+    color: #FFFFFF;
+    opacity: 0.1;
+    margin-left: -35px;
+    font-size: 110px;
+    line-height: 110px;
+}
+.dashboard-stat .more > i {
+    display: inline-block;
+    margin-top: 1px;
+    float: right;
+}
+
+.favourites_document .panel-body {
+    min-height: unset;
+    max-height: unset;
+}

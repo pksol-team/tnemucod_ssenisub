@@ -1,0 +1,24 @@
+Change Proposals
+	View all proposals with users -> done
+	accept and reject proposals ->done
+	publish change -> done
+
+submit for approval
+	accept 
+	reject
+	
+request review
+	accept
+	reject
+
+dashboard
+	Show Favourites with search ->done
+	Drafts in progress -> done
+	Review Requests
+	Approval Requests
+Roles
+	department restrictions -> done
+	procedures restrictions -> done
+	
+Email
+	New user email -> done

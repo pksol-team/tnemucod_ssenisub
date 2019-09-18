@@ -1,0 +1,19 @@
+Create Database - 2 hours Done
+User Signup with popup - 4 hours
+department creation - 3 hours
+assign department to user and user to department popup - 2 hours
+notification - 4 hours
+profile edit page - 2 hours
+
+procedure: (1 week to 10 days)
+	basic page 
+	dropzone file upload
+	jquery drag and drop
+	image resizing
+	comments and user changes
+	procedure and folder functionality
+	
+preview procedure
+Request approval
+publish approval
+other functionalities
