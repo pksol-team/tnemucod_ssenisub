@@ -121,12 +121,7 @@ Route::group(['middleware' => 'auth'], function() {
 	// favourite page
 	Route::get('/favourites', 'Custom\CustomController@favourites_all');
 
-	
+	// test for mailing
+	Route::get('/test', 'Custom\CustomController@test');
 
 });
-
-
-
-
-
-

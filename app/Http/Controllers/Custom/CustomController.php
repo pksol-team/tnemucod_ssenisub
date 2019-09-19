@@ -357,13 +357,13 @@ class CustomController extends Controller
     		} else {
                 $owner = User::find($dataTypeContent->owner);
 
-                if ($dataTypeContent->owner != $user->id) {
+                if ($dataTypeContent->owner != $user->id  && $user->role_id != '1') {
 
                     $userAccess =  DB::table('user_department')->where([['user_id', $user->id],['department_id', $dataTypeContent->department_id]])->first();
 
-                    if (!$userAccess && $user->role_id != '1') {
+                    if (!$userAccess) {
                         return redirect('/');
-                    } else if(count($userAccess) > 0) {
+                    } else {
                         return redirect('procedure/'.$id)->with('error', 'You are not the owner of the procedure, please make a request for ownership, or become an admin.');
                         // if ($userAccess->role == 'contributor') {
                         // } else {
@@ -1225,6 +1225,22 @@ class CustomController extends Controller
 
         return Voyager::view('vendor.voyager.departments.favourites')->with(compact('favourites'));
 
+    }
+
+    // test for mailing
+    public function test()
+    {
+        $adminEmail = 'aminshoukat4@gmail.com';
+        $subject = 'Support message from: Amin';
+        $msg_templateAdmin = '
+                <div style="text-align: left;padding-left: 20px;padding-top: 50px;padding-bottom: 30px;">
+                    Test Mail
+                </div>
+                ';
+        $data = array( 'email' => $adminEmail, 'subject' => $subject, 'message' => $msg_templateAdmin);
+        Mail::send([], $data, function ($m) use($data) {
+           $m->to($data['email'])->subject($data['subject'])->setBody($data['message'], 'text/html');
+        });
     }
 	
 

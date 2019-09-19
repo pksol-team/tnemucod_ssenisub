@@ -195,7 +195,7 @@
                                    <i data-help="procedure-right-click-gear-icon" style="cursor: pointer" type="button" id="procedure-dropdown-{{ $procNdFold->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="voyager-settings"></i>
                                    <ul class="dropdown-menu" aria-labelledby="procedure-dropdown-{{ $procNdFold->id }}">
                                       <?php if ($procNdFold->type != 'folder'): ?>
-                                        <li><a href="/procedures/{{ $procNdFold->id }}/edit">Edit</a></li>
+                                        <li><a href="/procedure/{{ $procNdFold->id }}/edit">Edit</a></li>
                                         <li><a href="/procedures/{{ $procNdFold->id }}/duplicate">Duplicate</a></li>
                                       <?php endif ?>
                                       <!-- <li><a class="moveButton" data-target="#move-procedure-modal-{{ $procNdFold->id }}" data-type="{{ $procNdFold->type }}" data-id="{{ $procNdFold->id }}">Move</a></li> -->

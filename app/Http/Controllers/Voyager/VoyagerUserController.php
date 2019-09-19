@@ -15,6 +15,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use Auth;
 use URL;
+use Mail;
 
 class VoyagerUserController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
