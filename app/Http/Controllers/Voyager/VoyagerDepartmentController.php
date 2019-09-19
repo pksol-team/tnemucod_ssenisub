@@ -310,7 +310,6 @@ class VoyagerDepartmentController extends \TCG\Voyager\Http\Controllers\VoyagerB
 
         $user = Auth::user();
 
-
         if ($user->role_id != '1' && $slug == 'users') {
             return redirect()
             ->back()

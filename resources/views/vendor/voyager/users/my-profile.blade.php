@@ -1,5 +1,4 @@
 <?php  
-    $edit = Auth::user()->id;
     $user = Auth::user();
     $user_id = $user->id;
 ?>
@@ -27,17 +26,14 @@
 
                 <div class="panel panel-bordered">
                     <!-- form start -->
-                    <form role="form"
-                            class="form-edit-add"
-                            action="{{ URL::to('/users/'.$user_id) }}"
-                            method="POST" enctype="multipart/form-data">
+                    <form role="form" class="form-edit-add" action="{{ URL::to('/users/'.$user_id) }}" method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
-                        @if($edit)
+                        @if($user)
                             {{ method_field("PUT") }}
                         @endif
 
                         <!-- CSRF TOKEN -->
-                        {{ csrf_field() }}
+                        @csrf
 
                         <div class="panel-body">
 
@@ -56,6 +52,7 @@
                                <!-- Adding / Editing -->
                                <!-- GET THE DISPLAY OPTIONS -->
                                <div class="form-group  col-md-12 ">
+                                  <input type="hidden" name="role_id" value="{{ $user->role_id }}">
                                   <label class="control-label" for="name">Name</label>
                                   <input required="" type="text" class="form-control" name="name" placeholder="Name" value="{{ $user->name }}">
                                </div>

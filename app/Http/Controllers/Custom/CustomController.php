@@ -78,9 +78,9 @@ class CustomController extends Controller
 		    $content = $msg_template;
 
 			$data = array( 'email' => $to, 'subject' => $subject, 'message' => $content);
-			//Mail::send([], $data, function ($m) use($data) {
-	           // $m->to($data['email'])->subject($data['subject'])->setBody($data['message'], 'text/html');
-	    	//});
+			Mail::send([], $data, function ($m) use($data) {
+	           $m->to($data['email'])->subject($data['subject'])->setBody($data['message'], 'text/html');
+	    	});
 
 			return redirect()->back()->with('message', 'User password has been reset and sent over email');
      	} else {

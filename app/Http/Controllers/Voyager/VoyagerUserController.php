@@ -291,12 +291,24 @@ class VoyagerUserController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCon
 
         event(new BreadDataUpdated($dataType, $data));
 
-        return redirect()
-        ->route("voyager.{$dataType->slug}.index")
-        ->with([
-            'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
-            'alert-type' => 'success',
-        ]);
+        $user = Auth::user();
+
+        if ($user->role_id != '1') {
+            return redirect()
+            ->back()
+            ->with([
+                'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
+        } else {
+            return redirect()
+            ->route("voyager.{$dataType->slug}.index")
+            ->with([
+                'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
+        }
+
     }
 
     //***************************************
