@@ -46,8 +46,8 @@
                                          <i data-help="procedure-right-click-gear-icon" style="cursor: pointer" type="button" id="procedure-dropdown-{{ $favourite->folder_and_procedureID }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="voyager-settings"></i>
                                          <ul class="dropdown-menu" aria-labelledby="procedure-dropdown-{{ $favourite->folder_and_procedureID }}">
                                             <?php if ($favourite->type != 'folder'): ?>
-                                              <li><a href="/procedures/{{ $favourite->folder_and_procedureID }}/edit">Edit</a></li>
-                                              <li><a href="/procedures/{{ $favourite->folder_and_procedureID }}/duplicate">Duplicate</a></li>
+                                              <li><a href="/procedure/{{ $favourite->folder_and_procedureID }}/edit">Edit</a></li>
+                                              <li><a href="/procedure/{{ $favourite->folder_and_procedureID }}/duplicate">Duplicate</a></li>
                                             <?php endif ?>
                                            {{--  <li><a class="moveButton" data-target="#move-procedure-modal-{{ $favourite->folder_and_procedureID }}" data-type="{{ $favourite->type }}" data-id="{{ $favourite->folder_and_procedureID }}">Move</a></li> --}}
                                             <li><a data-toggle="modal" data-target="#rename-{{ $favourite->type }}-modal-{{ $favourite->folder_and_procedureID }}">Rename</a></li>
