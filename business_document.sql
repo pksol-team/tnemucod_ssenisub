@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-09-19 13:04:05
+Date: 2019-09-20 20:02:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,21 +21,25 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `approval_requests`;
 CREATE TABLE `approval_requests` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   `procedure_id` int(11) DEFAULT NULL,
   `comment` longtext,
   `users` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `user_foreighn_key_01` (`user_id`),
+  KEY `procedure_foreighn_key_01` (`procedure_id`),
+  CONSTRAINT `procedure_foreighn_key_01` FOREIGN KEY (`procedure_id`) REFERENCES `folder_and_procedure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_foreighn_key_01` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of approval_requests
 -- ----------------------------
 INSERT INTO `approval_requests` VALUES ('4', '1', '49', 'ddfd', '1,4', 'review', '2019-09-16 15:57:00', '2019-09-17 17:11:47');
-INSERT INTO `approval_requests` VALUES ('9', '2', '51', 'afafj', '1,4', 'approval', '2019-09-17 12:45:40', null);
+INSERT INTO `approval_requests` VALUES ('9', '5', '51', 'afafj', '1,4', 'approval', '2019-09-17 12:45:40', '2019-09-20 19:57:02');
 
 -- ----------------------------
 -- Table structure for data_rows
@@ -212,7 +216,7 @@ INSERT INTO `folder_and_procedure` VALUES ('47', '5', 'testing procedure admin',
 INSERT INTO `folder_and_procedure` VALUES ('48', '2', 'amin', null, '5', 'procedure', null, 'description', '3', '2019-09-16 10:16:11', '2019-09-19 12:16:55', null);
 INSERT INTO `folder_and_procedure` VALUES ('49', '2', '123456787654', 'reject', '5', 'procedure', null, '234567876543', '2', '2019-09-16 15:56:24', '2019-09-19 12:16:56', null);
 INSERT INTO `folder_and_procedure` VALUES ('50', '4', 'afjaklfj', null, '5', 'procedure', null, 'klajdfklaj', '2', '2019-09-17 09:50:41', '2019-09-19 13:01:36', null);
-INSERT INTO `folder_and_procedure` VALUES ('51', '2', 'contributor', null, '5', 'procedure', null, 'hajkhf', '2', '2019-09-17 12:39:28', '2019-09-19 12:16:57', null);
+INSERT INTO `folder_and_procedure` VALUES ('51', '2', 'contributor', null, '5', 'procedure', null, 'hajkhf', '3', '2019-09-17 12:39:28', '2019-09-20 19:54:06', null);
 INSERT INTO `folder_and_procedure` VALUES ('52', '3', 'Achizitii Clover', null, '1', 'procedure', null, 'test daniel', '2', '2019-09-18 18:03:16', '2019-09-18 19:03:17', null);
 
 -- ----------------------------
@@ -681,7 +685,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '1', 'Admin', 'admin@admin.com', 'users/default.png', null, '$2y$10$pLMnKiwv9orgII4CrXcMF.FtBo5dtm5JskbmvmtWjHUoFdDGGTt9e', 'r3SRWR9efw9xCpL9vTHItgbUsQ9vHbnaM66H0i9lHuRV3XFH9wt7qODvSAju', null, '2019-07-25 21:37:39', '2019-07-26 05:00:47');
+INSERT INTO `users` VALUES ('1', '1', 'Admin', 'admin@admin.com', 'users/default.png', null, '$2y$10$pLMnKiwv9orgII4CrXcMF.FtBo5dtm5JskbmvmtWjHUoFdDGGTt9e', 'euwWgvoTFTYEcYUIGwRJwCIg8F5w9x3u7zG3OrqiDNO1RvtwGkd7DyPXOvvD', null, '2019-07-25 21:37:39', '2019-09-19 10:15:26');
 INSERT INTO `users` VALUES ('5', '1', 'Daniel Landa', 'danielracu189@gmail.com', 'users/default.png', null, '$2y$10$E35H3NuLPKaOAxkI4VcHB.Cw8pVD1kuEfKHRDCq5IZi/zFcdJIDa6', null, null, '2019-09-18 17:29:50', '2019-09-18 18:06:57');
 INSERT INTO `users` VALUES ('6', '2', 'Ciprian Duca', 'ciprian.duca@schwarzgruppeint.ro', 'users/default.png', null, '$2y$10$ufUxoZWDE8XDQLbtnLph.eMWx0RAISFSXhlhX4aw2OkRPlLlVuIsW', null, null, '2019-09-18 18:01:04', '2019-09-18 18:01:04');
 INSERT INTO `users` VALUES ('7', '2', 'amin shoukat', 'aminshoukat4@gmail.com', 'users/default.png', null, '$2y$10$udcC7S1FgRIvz5Ct7e7.LOuLXwqCVaZwZtB.1uYzMVqDRHtkU7Kti', null, null, '2019-09-19 09:54:23', '2019-09-19 10:01:43');
