@@ -329,6 +329,16 @@
                      </div>
                   </div>
                </div>
+               <div class="panel panel-success editing_procedure">
+                  <div class="panel-heading"> Editing </div>
+                  <div class="panel-body">
+                     <div class="btn-group btn-group-sm procedure-editing-buttons-container">
+                        {{-- <a data-help="procedure-editing-save-button" id="procedure-button-save" href="" class="btn btn-primary"> <i class="far fa-save"></i> Save</a> --}}
+                        <a data-help="procedure-editing-preview-button" id="procedure-button-preview" href="/procedures/27/preview" target="_blank" class="btn btn-success"><i class="fa fa-eye"></i> Preview </a>
+                        <a data-help="procedure-editing-delete-button" id="procedure-button-destroy" href="/procedures/27/destroy" class="btn btn-danger"><i class="fas fa-times"></i> Delete </a>
+                     </div>
+                  </div>
+               </div>
             </div>
             <br clear="all">
          </div>
