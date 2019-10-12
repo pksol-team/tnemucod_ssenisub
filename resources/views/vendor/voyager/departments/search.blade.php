@@ -4,7 +4,7 @@
 ?>
 @extends('voyager::master')
 
-@section('page_title', __('voyager::generic.view').' '.$dataType->display_name_singular)
+@section('page_title', __('voyager::generic.view').' '.' Search')
 
 @section('page_header')
     @include('voyager::multilingual.language-selector')
@@ -25,142 +25,9 @@
 @endif
     <div class="row" style="padding: 10px;">
        <div class="col-md-12">
-          <div class="page-bar">
-            <ol class="breadcrumb hidden-xs">
-                @php
-                $segments = array_filter(explode('/', str_replace(route('voyager.dashboard'), '', Request::url())));
-                $url = route('voyager.dashboard');
-                @endphp
-                @if(count($segments) == 0)
-                    <li class="active"><i class="voyager-home"></i> {{ __('voyager::generic.dashboard') }}</li>
-                @else
-                    <li class="active">
-                        <a href="{{ route('voyager.dashboard')}}"><i class="voyager-home"></i> {{ __('voyager::generic.dashboard') }}</a>
-                    </li>
-                    @foreach ($segments as $segment)
-                        @php
-                            $url .= '/'.$segment;
-                        @endphp
-                        @if ($loop->last)
-                            <li>{{ $dataTypeContent->name }}</li>
-                        @else
-                            
-                        @endif
-                    @endforeach
-                @endif
-            </ol>
-          </div>
           <div class="clearfix"></div>
-          <div class="panel panel-default" style="margin-top: 20px;">
-             <div class="panel-heading" style="padding: 12px;">
-                <div class="row">
-                    <div class="col-xs-6" style="margin-bottom: 0;"><i class="voyager-company"></i> {{ $dataTypeContent->name }}</div>
-                    <div class="col-xs-6 text-right" style="margin-bottom: 0;">
-                    @can('delete', $dataTypeContent)
-                            <a href="#rename-department-modal-{{ $dataTypeContent->id }}" data-toggle="modal" data-target="#rename-department-modal-{{ $dataTypeContent->id }}" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary rename" data-id="{{ $dataTypeContent->getKey() }}" id="rename-{{ $dataTypeContent->getKey() }}">
-                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm">Rename</span>
-                            </a>
-                        @if($isSoftDeleted)
-                            <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
-                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
-                            </a>
-                        @else
-                            <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
-                            </a>
-                        @endif
-                    @endcan
-                    </div>
-                </div>
-                
-                </div>
-             </div>
              <div class="panel-body" style="background: #fff;">
-                <div class="btn-group">
-                   <div class="dropdown">
-                      <button class="btn btn-dark dropdown-toggle" type="button" id="departmentNewButtonDropdown" data-toggle="dropdown">
-                      <i class="voyager-plus"></i> New
-                      <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="departmentNewButtonDropdown">
-                         <li class="presentation" role="presentation">
-                            <a href="#create-procedure-modal" role="menuitem" tabindex="-1" data-help="browser-create-new-procedure" data-toggle="modal" data-target="#create-procedure-modal">
-                              <i class="voyager-file-text"></i> Procedure <br>
-                              <span class="description">Create a new Procedure, that is ready to be used for your company.</span>
-                            </a>
-                         </li>
-                         <li class="presentation" role="presentation">
-                            <a href="#create-folder-modal" role="menuitem" tabindex="-1" data-help="browser-create-new-folder" data-toggle="modal" data-target="#create-folder-modal">
-                              <i class="voyager-folder"></i> Folder <br>
-                              <span class="description">Create a new Folder to help group procedures easier.</span>
-                            </a>
-                         </li>
-                      </ul>
-                   </div>
-                </div>
-                <!-- Folder Modal -->
-                <div class="modal fade" id="create-folder-modal" tabindex="-1" role="dialog" aria-labelledby="create-folder-modal-label" aria-hidden="true">
-                   <div class="modal-dialog">
-                      <div class="modal-content">
-                         <form method="POST" action="{{ URL::to('/folders') }}" accept-charset="UTF-8">
-                            @csrf
-                            <input type="hidden" name="department_id" value="{{ $dataTypeContent->id }}" />
-                            <input name="type" type="hidden" value="folder">
-                            <div class="modal-header">
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                               <h4 class="modal-title" id="create-folder-modal-label">Create new folder</h4>
-                            </div>
-                            <div class="modal-body">
-                               <div class="form-group">
-                                  <label for="name">Folder name</label>
-                                  <input class="form-control" name="name" type="text" id="name" placeholder="Type Folder Name Here" required>
-                               </div>
-                               <!-- <input name="parent_id" type="hidden" value="{{ $dataTypeContent->id }}"> -->
-                            </div>
-                            <div class="modal-footer">
-                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                               <button type="submit" class="btn btn-primary">Create folder</button>
-                            </div>
-                         </form>
-                      </div>
-                   </div>
-                </div>
-                <!-- End Folder Modal -->
-
-                <!-- Procedure Modal -->
-                <div class="modal fade" id="create-procedure-modal" tabindex="-1" role="dialog" aria-labelledby="create-procedure-modal-label" aria-hidden="true">
-                   <div class="modal-dialog">
-                      <div class="modal-content">
-                         <form method="POST" action="{{ URL::to('/procedures') }}" accept-charset="UTF-8" id="create-procedure-modal-form">
-                            @csrf
-                            <input type="hidden" name="department_id" value="{{ $dataTypeContent->id }}" />
-                            <input name="type" type="hidden" value="procedure">
-                            <div class="modal-header">
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                               <h4 class="modal-title" id="create-procedure-modal-label">Create New Procedure</h4>
-                            </div>
-                            <div class="modal-body">
-                               <div class="form-group">
-                                  <label for="name">Procedure name</label>
-                                  <input class="form-control" id="procedure-name-field" name="name" type="text" required>
-                               </div>
-                              <input name="type" type="hidden" value="procedure">
-                               <!-- <input name="parent_id" type="hidden" value="{{ $dataTypeContent->id }}"> -->
-                               <div class="form-group">
-                                  <label for="description">Procedure goal / description</label>
-                                  <textarea class="form-control" name="description" cols="50" rows="10" id="description" required></textarea>
-                               </div>
-                            </div>
-                            <div class="modal-footer">
-                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                               <button type="submit" id="create-procedure-button" class="btn btn-primary">Create Procedure</button>
-                            </div>
-                         </form>
-                      </div>
-                   </div>
-                </div>
-                <!-- End Procedure Modal -->
-
+              <h3 style="margin-left: 18px;">Search results for <b>{{ $keyword }}</b></h3>
                 <div class="form-group col-md-2 pull-right">
                    <input data-help="browse-filter-input" type="text" class="form-control" id="quick-filter" name="quick-filter" placeholder="Type to filter...">
                 </div>
@@ -171,7 +38,7 @@
                          <th width="1%"></th>
                          <th width="1%"></th>
                          <th width="60%">Name</th>
-                         <th width="10%">State</th>
+                         <th width="10%">Info</th>
                          <th width="10%">Owner</th>
                          <th width="25%">Last updated</th>
                       </tr>
@@ -180,9 +47,7 @@
                       <!-- Then the activities -->
                       <!-- First the folders -->
                       <!-- Then the procedures -->
-                      <?php $allProcNdFolds = DB::table('folder_and_procedure')->where([['department_id', $dataTypeContent->id], ['parent_id', NULL], ['delete', NULL]])->orderBy('type', 'ASC')->orderBy('name', 'ASC')->get(); ?>
-                      <?php if (count($allProcNdFolds) > 0): ?>
-                        <?php foreach ($allProcNdFolds as $key => $procNdFold): ?>
+                        @forelse($dataTypeContent as $key => $procNdFold)
                           
                           <tr class="procedure_department_listing">
                              <td><i data-help="browse-procedure-icon" class="{{ $procNdFold->type == 'folder' ? 'voyager-folder' : 'voyager-file-text' }}"></i></td>
@@ -323,7 +188,7 @@
                              </td>
                              <td>
                               <?php if ($procNdFold->type == 'procedure' && $procNdFold->status == NULL): ?>
-                                <span class="label label-warning">Draft</span>
+                                <span class="label label-warning">Draft </span>
                               <?php endif ?>
                              </td>
                              <td>
@@ -338,122 +203,20 @@
                                 <?php endif ?>
                              </td>
                           </tr>
-                        <?php endforeach ?>
-                      <?php endif ?>
+                        @empty
+                        <tr>&nbsp;</tr>
+                        @endforelse
 
                       <!-- Then the procedure drafts -->
                    </tbody>
                 </table>
              </div>
           </div>
-          <!-- Rename Modal -->
-          <div class="modal fade" id="rename-department-modal-{{ $dataTypeContent->id }}" tabindex="-1" role="dialog" aria-labelledby="rename-department-modal-label-{{ $dataTypeContent->id }}" aria-hidden="true">
-             <div class="modal-dialog">
-                <div class="modal-content">
-                   <form method="POST" action="/departments/{{ $dataTypeContent->id }}/rename" accept-charset="UTF-8">
-                      @csrf
-                      <input type="hidden" name="department_id" value="{{ $dataTypeContent->id }}" />
-                      <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                         <h4 class="modal-title" id="rename-department-modal-label-5">Rename Department</h4>
-                      </div>
-                      <div class="modal-body">
-                         <div class="form-group">
-                            <label for="name">Department name</label>
-                            <input class="form-control" name="name" type="text" value="{{ $dataTypeContent->name }}" id="name" required>
-                         </div>
-                      </div>
-                      <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                         <button type="submit" class="btn btn-primary">Rename Department</button>
-                      </div>
-                   </form>
-                </div>
-             </div>
-          </div>
-          <!-- Rename Modal -->
-
-          <div class="modal fade" id="create-procedure-draft">
-             <div class="modal-dialog">
-                <div class="modal-content">
-                   <form method="POST" action="http://schwarzgruppeint.bdsdocs.com/procedureDrafts" accept-charset="UTF-8">
-                      <input name="_token" type="hidden" value="VyEbCy9Nr6rSUYpWe0biOo44VIZ8QzLmUV2nmEn2">
-                      <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                         <h4 class="modal-title">Create a Procedure Placeholder</h4>
-                      </div>
-                      <div class="modal-body">
-                         <div class="form-group">
-                            <label for="name">Procedure Placeholder Name</label>
-                            <input class="form-control" name="name" type="text" id="name">
-                         </div>
-                         <div class="form-group">
-                            <label for="description">Procedure Goal</label>
-                            <textarea class="form-control" name="description" cols="50" rows="10" id="description"></textarea>
-                         </div>
-                         <div class="form-group">
-                            <label for="user_assigned_id">User in charge of creating procedure:</label>
-                            <select class="form-control" id="user_assigned_id" name="user_assigned_id">
-                               <option value="1" selected="selected"> Me (daniel landa)</option>
-                            </select>
-                         </div>
-                         <div class="form-group">
-                            <label for="deadline">Deadline:</label>
-                            <select class="form-control" id="deadline" name="deadline">
-                               <option value="none">None</option>
-                               <option value="today">Today</option>
-                               <option value="this_week">End of this week</option>
-                               <option value="next_week">End of next week</option>
-                               <option value="this_month">End of this month</option>
-                            </select>
-                         </div>
-                         <input type="hidden" name="department_id" value="5">
-                      </div>
-                      <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                         <button type="submit" class="btn btn-primary">Create Procedure Draft</button>
-                      </div>
-                   </form>
-                </div>
-                <!-- /.modal-content -->
-             </div>
-             <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal -->                
        </div>
     </div>
-
-    {{-- Single delete modal --}}
-    <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->display_name_singular) }}?</h4>
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('voyager.'.$dataType->slug.'.index') }}" id="delete_form" method="POST">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm"
-                               value="{{ __('voyager::generic.delete_confirm') }} {{ strtolower($dataType->display_name_singular) }}">
-                    </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 @stop
 
 @section('javascript')
-    @if ($isModelTranslatable)
-        <script>
-            $(document).ready(function () {
-                $('.side-body').multilingual();
-            });
-        </script>
-        <script src="{{ voyager_asset('js/multilingual.js') }}"></script>
-    @endif
     <script>
         var deleteFormAction;
         $('.delete').on('click', function (e) {
@@ -487,6 +250,15 @@
 
         });
 
+        var breadcrumbs = '';
+
+        $($(".breadcrumb_li").get().reverse()).each(function(index, el) {
+          breadcrumbs += '<li class="active breadcrumb_li">'+$(el).html()+'</li>';
+        });
+
+        $('.breadcrumb_li').remove();
+        $(breadcrumbs).insertAfter('li.department_li_breadcrumb');
+
 
         $("#quick-filter").on("keyup", function() {
            var $this = $(this);
@@ -498,10 +270,6 @@
               $(this).toggle($(this).find('.item-name').text().toLowerCase().indexOf(keywords) > -1)
            });
         });
-
-
-
-
 
     </script>
 @stop

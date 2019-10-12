@@ -160,11 +160,12 @@ class CustomController extends Controller
 
             $getDepartmentUsers = DB::table('user_department')->where('department_id', $department_id)->get();
             if ($getDepartmentUsers) {
+                $link = '/departments/'.$department_id;
                 $title = \Lang::get('messages.department.rename', ['user' => Auth::user()->name, 'oldDepartmentName' => $oldData->name, 'newDepartmentName' => $name]);
                 $body = \Lang::get('messages.department.rename', ['user' => Auth::user()->name, 'oldDepartmentName' => '<a href="/departments/'.$department_id.'">'.$oldData->name.'</a>', 'newDepartmentName' => '<a href="/departments/'.$department_id.'">'.$name.'</a>']);
                 $type = 'department';
                 foreach ($getDepartmentUsers as $key => $getDepartmentUser) {
-                    $this->addNotification($title, $body, $type, $department_id, NULL, Auth::user()->id, $getDepartmentUser->user_id);
+                    $this->addNotification($link, $title, $body, $type, $department_id, NULL, Auth::user()->id, $getDepartmentUser->user_id);
                 }
             }
 
@@ -257,11 +258,12 @@ class CustomController extends Controller
 
             $getDepartmentUsers = DB::table('user_department')->where('department_id', $oldData->department_id)->get();
             if ($getDepartmentUsers) {
+                $link = '/departments/'.$oldData->department_id;
                 $title = \Lang::get('messages.procedure.rename', ['user' => Auth::user()->name, 'oldProcedureName' => $oldData->name, 'newProcedureName' => $name, 'departmentName' => $depart->name]);
                 $body = \Lang::get('messages.procedure.rename', ['user' => Auth::user()->name, 'oldProcedureName' => '<a href="/procedure/'.$id.'">'.$oldData->name.'</a>', 'newProcedureName' => '<a href="/procedure/'.$id.'">'.$name.'</a>', 'departmentName' => '<a href="/departments/'.$oldData->department_id.'">'.$depart->name.'</a>']);
                 $type = 'department';
                 foreach ($getDepartmentUsers as $key => $getDepartmentUser) {
-                    $this->addNotification($title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
+                    $this->addNotification($link, $title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
                 }
 
             }
@@ -392,13 +394,15 @@ class CustomController extends Controller
 
                             $users = explode(',', $submitRequestFound->users);
 
+                            $link = '/procedure/'.$dataTypeContent->id;
+
                             $title = \Lang::get('messages.procedure.cancelRequest', ['user' => Auth::user()->name, 'status' => $submitRequestFound->status, 'procedureName' => $dataTypeContent->name, 'departmentName' => $depart->name]);
                             $body = \Lang::get('messages.procedure.cancelRequest', ['user' => Auth::user()->name, 'status' => $submitRequestFound->status, 'procedureName' => '<a href="/procedure/'.$dataTypeContent->id.'">'.$dataTypeContent->name.'</a>', 'departmentName' => '<a href="/departments/'.$dataTypeContent->department_id.'">'.$depart->name.'</a>']);
                             
                             if ($users) {
                                 foreach ($users as $key => $user) {
                                     $publisher = User::find($user);
-                                    $this->addNotification($title, $body, $type, NULL, $dataTypeContent->id, Auth::user()->id, $publisher->id);
+                                    $this->addNotification($link, $title, $body, $type, NULL, $dataTypeContent->id, Auth::user()->id, $publisher->id);
                                 }
                             }
                             DB::table('approval_requests')->where('id', $submitRequestFound->id)->delete();
@@ -641,6 +645,8 @@ class CustomController extends Controller
         ];
 
         $type = 'department';
+        $link = '/departments/'.$oldData->department_id;
+
         if ($oldData->owner == Auth::user()->id && $oldData->edit == '1') {
             $title = \Lang::get('messages.procedure.ownerCreatePublish', ['user' => Auth::user()->name, 'procedureName' => $oldData->name, 'departmentName' => $depart->name]);
             $body = \Lang::get('messages.procedure.ownerCreatePublish', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$id.'">'.$oldData->name.'</a>', 'departmentName' => '<a href="/departments/'.$oldData->department_id.'">'.$depart->name.'</a>']);
@@ -655,7 +661,7 @@ class CustomController extends Controller
         $getDepartmentUsers = DB::table('user_department')->where('department_id', $oldData->department_id)->get();
         if ($getDepartmentUsers) {
             foreach ($getDepartmentUsers as $key => $getDepartmentUser) {
-                $this->addNotification($title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
+                $this->addNotification($link, $title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
             }
         }
 
@@ -692,10 +698,11 @@ class CustomController extends Controller
             $reject = ['status' => 'reject'];
             DB::table('approval_requests')->where([['id', $approval_requests->id]])->update($reject);
 
+            $link = '/departments/'.$oldData->department_id;
             $title = \Lang::get('messages.procedure.reject', ['user' => Auth::user()->name, 'procedureName' => $oldData->name, 'departmentName' => $depart->name]);
             $body = \Lang::get('messages.procedure.reject', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$id.'">'.$oldData->name.'</a>', 'departmentName' => '<a href="/departments/'.$oldData->department_id.'">'.$depart->name.'</a>']);
 
-            $this->addNotification($title, $body, $type, $oldData->department_id, NULL, Auth::user()->id, $oldData->owner);
+            $this->addNotification($link, $title, $body, $type, $oldData->department_id, NULL, Auth::user()->id, $oldData->owner);
         }
 
         return redirect('/procedure/'.$id)->with('error', 'Procedure rejected.');
@@ -817,13 +824,15 @@ class CustomController extends Controller
             if ($oldData) {
                 $type = 'procedure';
 
+                $link = '/procedure/'.$procedure_data->folder_and_procedure_id;
+
                 $title = \Lang::get('messages.procedure.comment', ['user' => Auth::user()->name, 'procedureName' => $oldData->name]);
                 $body = \Lang::get('messages.procedure.comment', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure_data->folder_and_procedure_id.'">'.$oldData->name.'</a>']);
 
                 $getDepartmentUsers = DB::table('user_department')->where('department_id', $oldData->department_id)->get();
                 if ($getDepartmentUsers) {
                     foreach ($getDepartmentUsers as $key => $getDepartmentUser) {
-                        $this->addNotification($title, $body, $type, NULL, $procedure_data->folder_and_procedure_id, Auth::user()->id, $getDepartmentUser->user_id);
+                        $this->addNotification($link, $title, $body, $type, NULL, $procedure_data->folder_and_procedure_id, Auth::user()->id, $getDepartmentUser->user_id);
                     }
                 }
 
@@ -862,19 +871,22 @@ class CustomController extends Controller
 
         $type = 'procedure';
 
+        $link = '/procedure/'.$id.'">'.$oldData->name;
+
         $title = \Lang::get('messages.procedure.takeOverProcedure', ['user' => Auth::user()->name, 'procedureName' => $oldData->name, 'departmentName' => $depart->name]);
         $body = \Lang::get('messages.procedure.takeOverProcedure', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$id.'">'.$oldData->name.'</a>', 'departmentName' => '<a href="/departments/'.$oldData->department_id.'">'.$depart->name.'</a>']);
 
-        $this->addNotification($title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $oldData->owner);
+        $this->addNotification($link, $title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $oldData->owner);
 
         $type = 'department';
+        $link = '/departments/'.$oldData->department_id;
         $title = \Lang::get('messages.procedure.takeOwnership', ['user' => Auth::user()->name, 'procedureName' => $oldData->name, 'departmentName' => $depart->name]);
         $body = \Lang::get('messages.procedure.takeOwnership', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$id.'">'.$oldData->name.'</a>', 'departmentName' => '<a href="/departments/'.$oldData->department_id.'">'.$depart->name.'</a>']);
 
         $getDepartmentUsers = DB::table('user_department')->where('department_id', $oldData->department_id)->get();
         if ($getDepartmentUsers) {
             foreach ($getDepartmentUsers as $key => $getDepartmentUser) {
-                $this->addNotification($title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
+                $this->addNotification($link, $title, $body, $type, $oldData->department_id, $id, Auth::user()->id, $getDepartmentUser->user_id);
             }
         }
 
@@ -926,11 +938,13 @@ class CustomController extends Controller
             $getProcedure = DB::table('folder_and_procedure')->where('id', $oldData->folder_and_procedure_id)->first();
             if ($getProcedure) {
 
+                $link = '/procedure/'.$oldData->folder_and_procedure_id;
+
                 $title = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => $getProcedure->name]);
                 $body = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$oldData->folder_and_procedure_id.'">'.$getProcedure->name.'</a>']);
                 $notifType = 'procedure';
 
-                $this->addNotification($title, $body, $notifType, NULL, $oldData->folder_and_procedure_id, Auth::user()->id, $oldData->user_id);
+                $this->addNotification($link, $title, $body, $notifType, NULL, $oldData->folder_and_procedure_id, Auth::user()->id, $oldData->user_id);
             }
 
             if ($type == 'BlockProcedure') {
@@ -1021,11 +1035,13 @@ class CustomController extends Controller
             $getProcedure = DB::table('folder_and_procedure')->where('id', $oldData->folder_and_procedure_id)->first();
             if ($getProcedure) {
 
+                $link = '/procedure/'.$oldData->folder_and_procedure_id;
+
                 $title = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => $getProcedure->name]);
                 $body = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$oldData->folder_and_procedure_id.'">'.$getProcedure->name.'</a>']);
                 $notifType = 'procedure';
 
-                $this->addNotification($title, $body, $notifType, NULL, $oldData->folder_and_procedure_id, Auth::user()->id, $oldData->user_id);
+                $this->addNotification($link, $title, $body, $notifType, NULL, $oldData->folder_and_procedure_id, Auth::user()->id, $oldData->user_id);
             }
 
             $proposeData = $updated;
@@ -1052,11 +1068,13 @@ class CustomController extends Controller
                 $getParent = DB::table('folder_and_procedure')->where('id', $getData->folder_and_procedure_id)->first();
                 if ($getParent) {
 
+                    $link = '/procedure/'.$getData->folder_and_procedure_id;
+
                     $title = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => $getParent->name]);
                     $body = \Lang::get('messages.propose.change', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$getData->folder_and_procedure_id.'">'.$getParent->name.'</a>']);
                     $notifType = 'procedure';
 
-                    $this->addNotification($title, $body, $notifType, NULL, $getData->folder_and_procedure_id, Auth::user()->id, $getData->user_id);
+                    $this->addNotification($link, $title, $body, $notifType, NULL, $getData->folder_and_procedure_id, Auth::user()->id, $getData->user_id);
                 }
             }
 
@@ -1066,9 +1084,10 @@ class CustomController extends Controller
 
 
     // Add Notification
-    public function addNotification($title, $body, $type, $department_id, $procedure_id, $user_id, $assigned_to)
+    public function addNotification($link, $title, $body, $type, $department_id, $procedure_id, $user_id, $assigned_to)
     {
         $insert = [
+            'link' => $link,
             'title' => $title,
             'body' => $body,
             'type' => $type,
@@ -1139,9 +1158,11 @@ class CustomController extends Controller
         $type = 'procedure';
 
         if ($status == 'approval') {
+            $link = '/procedure/'.$procedure_id.'/review_approval';
             $title = \Lang::get('messages.procedure.submitApproval', ['user' => Auth::user()->name, 'procedureName' => $procedure->name, 'departmentName' => $department->name]);
             $body = \Lang::get('messages.procedure.submitApproval', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure_id.'/review_approval">'.$procedure->name.'</a>', 'departmentName' => '<a href="/departments/'.$procedure->department_id.'">'.$department->name.'</a>']);
         } else if($status == 'review') {
+            $link = '/procedure/'.$procedure_id.'/request_review';
             $title = \Lang::get('messages.procedure.requestApproval', ['user' => Auth::user()->name, 'procedureName' => $procedure->name, 'departmentName' => $department->name]);
             $body = \Lang::get('messages.procedure.requestApproval', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure_id.'/request_review">'.$procedure->name.'</a>', 'departmentName' => '<a href="/departments/'.$procedure->department_id.'">'.$department->name.'</a>']);
         }
@@ -1149,7 +1170,7 @@ class CustomController extends Controller
         if ($users) {
             foreach ($users as $key => $user) {
                 $publisher = User::find($user);
-                $this->addNotification($title, $body, $type, NULL, $procedure_id, Auth::user()->id, $publisher->id);
+                $this->addNotification($link, $title, $body, $type, NULL, $procedure_id, Auth::user()->id, $publisher->id);
             }
         }
 
@@ -1179,6 +1200,8 @@ class CustomController extends Controller
             $publishedNew = DB::table('procedure_data')->where('id', $get->parent_id)->update($newStatus);
             $deleteOld = DB::table('procedure_data')->where('id', $procedure_data_id)->delete();
 
+            $link = '/procedure/'.$procedure->id;
+
             $title = \Lang::get('messages.propose.published', ['user' => Auth::user()->name, 'procedureName' => $procedure->name]);
             $body = \Lang::get('messages.propose.published', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure->id.'">'.$procedure->name.'</a>']);
 
@@ -1187,7 +1210,7 @@ class CustomController extends Controller
             if ($userAccess) {
                 foreach ($userAccess as $key => $user) {
                     $departmentUsers = User::find($user->user_id);
-                    $this->addNotification($title, $body, $type, NULL, $procedure->id, Auth::user()->id, $departmentUsers->id);
+                    $this->addNotification($link, $title, $body, $type, NULL, $procedure->id, Auth::user()->id, $departmentUsers->id);
                 }
             }
 
@@ -1197,17 +1220,19 @@ class CustomController extends Controller
         $updateStatus = DB::table('procedure_data')->where('id', $procedure_data_id)->update($newStatus);
         if ($status == 'accept') {
 
+            $link = '/procedure/'.$procedure->id;
             $title = \Lang::get('messages.propose.accepted', ['user' => Auth::user()->name, 'procedureName' => $procedure->name]);
             $body = \Lang::get('messages.propose.accepted', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure->id.'">'.$procedure->name.'</a>']);
 
         } else if($status == 'reject') {
 
+            $link = '/procedure/'.$procedure->id;
             $title = \Lang::get('messages.propose.reject', ['user' => Auth::user()->name, 'procedureName' => $procedure->name]);
             $body = \Lang::get('messages.propose.reject', ['user' => Auth::user()->name, 'procedureName' => '<a href="/procedure/'.$procedure->id.'">'.$procedure->name.'</a>']);
 
         }
 
-        $this->addNotification($title, $body, $type, NULL, $procedure->id, Auth::user()->id, $get->user_id);
+        $this->addNotification($link, $title, $body, $type, NULL, $procedure->id, Auth::user()->id, $get->user_id);
         
         return response()->json(['status'=>$status, 'procedure' => $get->parent_id]);
 
@@ -1241,6 +1266,35 @@ class CustomController extends Controller
         Mail::send([], $data, function ($m) use($data) {
            $m->to($data['email'])->subject($data['subject'])->setBody($data['message'], 'text/html');
         });
+    }
+
+
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        $user_id = $user->id;
+
+        if ($role_id == '1') {
+            $dataTypeContent = DB::table('folder_and_procedure')->where([['name', 'LIKE', '%'.$keyword.'%'], ['delete', NULL], ['type', 'procedure']])->orderBy('id', 'ASC')->get();
+        } else {
+
+            $department_ids = [];
+
+            $userDepartments = DB::table('user_department')->where([['user_id', $user_id]])->get();
+            if (count($userDepartments) > 0) {
+                foreach ($userDepartments as $key => $userDepartment) {
+                    array_push($department_ids, $userDepartment->department_id);
+                }
+            }
+
+            $dataTypeContent = DB::table('folder_and_procedure')->where([['name', 'LIKE', '%'.$keyword.'%'], ['delete', NULL], ['type', 'procedure']])->whereIn('department_id', $department_ids)->orderBy('id', 'ASC')->get();
+
+        }
+
+        return Voyager::view('vendor.voyager.departments.search')->with(compact('dataTypeContent', 'keyword'));
+
     }
 	
 

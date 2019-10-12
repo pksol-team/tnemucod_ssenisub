@@ -22,7 +22,7 @@
                 @endif
                <div class="col-md-12">
                   <div data-help="dashboard-favorites-panel" class="panel panel-default favorites-panel">
-                     <div class="panel-heading"> <img src="{{ voyager_asset('images/captain-avatar.png') }}" class="profile-img img-circle" style="width: 30px;display: inline-block;"> {{ Auth::user()->name }} - Favorite procedures</div>
+                     <div class="panel-heading"> <img src="{{ Voyager::image(Auth::user()->avatar) }}" class="profile-img img-circle" style="width: 30px;display: inline-block;"> {{ Auth::user()->name }} - Favorite procedures</div>
                       <table id="item-listings" class="table table-hover">
                          <thead>
                             <tr>

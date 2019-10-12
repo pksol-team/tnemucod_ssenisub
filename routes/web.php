@@ -121,7 +121,11 @@ Route::group(['middleware' => 'auth'], function() {
 	// favourite page
 	Route::get('/favourites', 'Custom\CustomController@favourites_all');
 
+	Route::post('/search', 'Custom\CustomController@search')->name('sidebarSearch');
+
 	// test for mailing
 	Route::get('/test', 'Custom\CustomController@test');
+
+
 
 });

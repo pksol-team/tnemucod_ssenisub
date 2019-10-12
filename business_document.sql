@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-09-20 20:02:59
+Date: 2019-10-11 18:01:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ INSERT INTO `data_rows` VALUES ('4', '1', 'password', 'password', 'Password', '1
 INSERT INTO `data_rows` VALUES ('5', '1', 'remember_token', 'text', 'Remember Token', '0', '0', '0', '0', '0', '0', '{}', '5');
 INSERT INTO `data_rows` VALUES ('6', '1', 'created_at', 'timestamp', 'Created At', '0', '0', '0', '0', '0', '0', '{}', '6');
 INSERT INTO `data_rows` VALUES ('7', '1', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '7');
-INSERT INTO `data_rows` VALUES ('8', '1', 'avatar', 'image', 'Avatar', '0', '0', '0', '0', '0', '1', '{}', '8');
+INSERT INTO `data_rows` VALUES ('8', '1', 'avatar', 'image', 'Avatar', '0', '0', '1', '1', '1', '1', '{}', '8');
 INSERT INTO `data_rows` VALUES ('9', '1', 'user_belongsto_role_relationship', 'relationship', 'Role', '0', '1', '1', '1', '1', '0', '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', '10');
 INSERT INTO `data_rows` VALUES ('10', '1', 'user_belongstomany_role_relationship', 'relationship', 'Roles', '0', '0', '0', '0', '0', '0', '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', '11');
 INSERT INTO `data_rows` VALUES ('11', '1', 'settings', 'hidden', 'Settings', '0', '0', '0', '0', '0', '0', '{}', '12');
@@ -119,7 +119,7 @@ CREATE TABLE `data_types` (
 -- ----------------------------
 -- Records of data_types
 -- ----------------------------
-INSERT INTO `data_types` VALUES ('1', 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'App\\Http\\Controllers\\Voyager\\VoyagerUserController', null, '1', '0', '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-07-24 21:22:10', '2019-09-14 09:46:31');
+INSERT INTO `data_types` VALUES ('1', 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'App\\Http\\Controllers\\Voyager\\VoyagerUserController', null, '1', '0', '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-07-24 21:22:10', '2019-10-11 07:14:09');
 INSERT INTO `data_types` VALUES ('3', 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', null, '', '', '1', '0', null, '2019-07-24 21:22:10', '2019-07-24 21:22:10');
 INSERT INTO `data_types` VALUES ('5', 'departments', 'departments', 'Department', 'Departments', 'voyager-company', 'App\\Department', null, 'App\\Http\\Controllers\\Voyager\\VoyagerDepartmentController', null, '1', '0', '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-26 03:19:19', '2019-08-28 11:43:23');
 
@@ -142,7 +142,7 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` VALUES ('2', 'Backend Department renamed', null, '2019-07-26 03:31:30', '2019-09-02 16:13:22');
 INSERT INTO `departments` VALUES ('3', 'dept. Administrativ', null, '2019-07-26 03:43:55', '2019-09-18 18:02:50');
 INSERT INTO `departments` VALUES ('4', 'new department testingadfaf', null, '2019-08-28 10:45:08', '2019-09-02 11:26:52');
-INSERT INTO `departments` VALUES ('5', 'admin department', null, '2019-09-06 16:43:30', '2019-09-06 16:43:30');
+INSERT INTO `departments` VALUES ('5', 'admin department testingdaffaf', null, '2019-09-06 16:43:30', '2019-10-11 06:29:35');
 
 -- ----------------------------
 -- Table structure for favourites
@@ -194,7 +194,7 @@ CREATE TABLE `folder_and_procedure` (
   CONSTRAINT `department_01_foreign_key` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `procedure_01_foreign_key` FOREIGN KEY (`parent_id`) REFERENCES `folder_and_procedure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_01_foreign_key` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of folder_and_procedure
@@ -202,8 +202,8 @@ CREATE TABLE `folder_and_procedure` (
 INSERT INTO `folder_and_procedure` VALUES ('1', '2', 'testing folder ', null, '1', 'folder', null, null, null, '2019-07-27 10:00:51', null, null);
 INSERT INTO `folder_and_procedure` VALUES ('4', '2', 'testing Procedure na', '1', '1', 'procedure', null, 'this is testing Procedure', '2', '2019-07-30 23:48:09', '2019-09-14 21:02:42', null);
 INSERT INTO `folder_and_procedure` VALUES ('36', '2', 'testing', null, '1', 'folder', '1', null, '1', '2019-08-24 09:03:36', null, null);
-INSERT INTO `folder_and_procedure` VALUES ('37', '3', '2344', null, '1', 'procedure', null, 'test', '2', '2019-08-27 09:49:17', '2019-09-11 20:37:33', null);
-INSERT INTO `folder_and_procedure` VALUES ('38', '3', '12345678', null, '1', 'procedure', null, 'testing', '1', '2019-08-27 10:28:07', null, null);
+INSERT INTO `folder_and_procedure` VALUES ('37', '3', '2344', null, '1', 'procedure', null, 'test', '3', '2019-08-27 09:49:17', '2019-10-11 11:56:47', null);
+INSERT INTO `folder_and_procedure` VALUES ('38', '3', '12345678', null, '1', 'procedure', null, 'testing', '2', '2019-08-27 10:28:07', '2019-10-11 11:56:45', null);
 INSERT INTO `folder_and_procedure` VALUES ('39', '2', 'teston', '1', '1', 'procedure', null, 'dsggs', '2', '2019-08-27 15:09:46', '2019-09-06 17:07:02', null);
 INSERT INTO `folder_and_procedure` VALUES ('40', '2', 'renamed procedure', '1', '5', 'procedure', null, 'jkhjkh', '2', '2019-08-27 15:19:13', '2019-09-19 12:16:53', null);
 INSERT INTO `folder_and_procedure` VALUES ('41', '2', 'kjhjk', '1', '1', 'procedure', null, 'jkhjkh', '2', '2019-08-27 15:24:00', '2019-09-17 14:05:14', null);
@@ -212,12 +212,13 @@ INSERT INTO `folder_and_procedure` VALUES ('43', '4', '12345', null, '1', 'proce
 INSERT INTO `folder_and_procedure` VALUES ('44', '2', 'test 1243', '1', '1', 'procedure', null, '123', null, '2019-09-02 11:53:03', '2019-09-02 16:54:10', null);
 INSERT INTO `folder_and_procedure` VALUES ('45', '2', 'contributor proc', '1', '5', 'procedure', null, 'contributor procedure', '3', '2019-09-06 11:03:30', '2019-09-19 12:16:54', null);
 INSERT INTO `folder_and_procedure` VALUES ('46', '5', 'testing admin folder', null, '1', 'folder', null, null, '2', '2019-09-14 14:24:27', '2019-09-16 20:02:57', null);
-INSERT INTO `folder_and_procedure` VALUES ('47', '5', 'testing procedure admin', null, '1', 'procedure', null, 'lorem ipsum', '2', '2019-09-14 14:34:45', '2019-09-17 17:37:02', null);
+INSERT INTO `folder_and_procedure` VALUES ('47', '5', 'testing procedure admin', '1', '1', 'procedure', null, 'lorem ipsum', '3', '2019-09-14 14:34:45', '2019-10-11 11:45:01', null);
 INSERT INTO `folder_and_procedure` VALUES ('48', '2', 'amin', null, '5', 'procedure', null, 'description', '3', '2019-09-16 10:16:11', '2019-09-19 12:16:55', null);
 INSERT INTO `folder_and_procedure` VALUES ('49', '2', '123456787654', 'reject', '5', 'procedure', null, '234567876543', '2', '2019-09-16 15:56:24', '2019-09-19 12:16:56', null);
 INSERT INTO `folder_and_procedure` VALUES ('50', '4', 'afjaklfj', null, '5', 'procedure', null, 'klajdfklaj', '2', '2019-09-17 09:50:41', '2019-09-19 13:01:36', null);
 INSERT INTO `folder_and_procedure` VALUES ('51', '2', 'contributor', null, '5', 'procedure', null, 'hajkhf', '3', '2019-09-17 12:39:28', '2019-09-20 19:54:06', null);
 INSERT INTO `folder_and_procedure` VALUES ('52', '3', 'Achizitii Clover', null, '1', 'procedure', null, 'test daniel', '2', '2019-09-18 18:03:16', '2019-09-18 19:03:17', null);
+INSERT INTO `folder_and_procedure` VALUES ('53', '2', 'Copy of amin', null, '1', 'procedure', null, 'description', '3', '2019-10-11 12:56:54', '2019-10-11 17:57:06', '1');
 
 -- ----------------------------
 -- Table structure for menus
@@ -322,6 +323,7 @@ INSERT INTO `migrations` VALUES ('26', '2017_04_11_000000_alter_post_nullable_fi
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE `notification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `body` text,
   `type` varchar(255) DEFAULT NULL,
@@ -333,26 +335,27 @@ CREATE TABLE `notification` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notification
 -- ----------------------------
-INSERT INTO `notification` VALUES ('6', 'Test published changes to procedure renamed procedure in department Backend Department renamed.', 'Test published changes to procedure <a href=\"/procedure/40\">renamed procedure</a> in department <a href=\"/departments/2\">Backend Department renamed</a>.', 'department', '2', '40', '2', '1', 'read', '2019-09-02 16:45:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('7', 'Test published changes to procedure renamed procedure in department Backend Department renamed.', 'Test published changes to procedure <a href=\"/procedure/40\">renamed procedure</a> in department <a href=\"/departments/2\">Backend Department renamed</a>.', 'department', '2', '40', '2', '5', 'unread', '2019-09-02 16:45:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('81', 'messages.procedure.submitApproval', 'messages.procedure.submitApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 10:14:52', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('82', 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:09:44', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('83', 'messages.procedure.requestApproval', 'messages.procedure.requestApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:10:13', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('84', 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:10:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('85', 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '1', 'unread', '2019-09-17 11:10:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('86', 'messages.procedure.submitApproval', 'messages.procedure.submitApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:12:46', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('87', 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:18:36', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('88', 'Test has requested an approval for procedure afjaklfj in department new department testingadfaf .', 'Test has requested an approval for procedure <a href=\"/procedure/50\">afjaklfj</a> in department <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:19:10', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('89', 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:20:29', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('90', 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '1', 'unread', '2019-09-17 11:20:29', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('91', 'Test has requested an approval for procedure contributor in department Backend Department renamed .', 'Test has requested an approval for procedure <a href=\"/procedure/51\">contributor</a> in department <a href=\"/departments/2\">Backend Department renamed</a> .', 'procedure', null, '51', '2', '1', 'unread', '2019-09-17 12:45:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('92', 'Test has requested an approval for procedure contributor in department Backend Department renamed .', 'Test has requested an approval for procedure <a href=\"/procedure/51\">contributor</a> in department <a href=\"/departments/2\">Backend Department renamed</a> .', 'procedure', null, '51', '2', '4', 'unread', '2019-09-17 12:45:40', '2019-09-19 12:43:21');
-INSERT INTO `notification` VALUES ('93', 'Admin has renamed department testing to dept. Administrativ.', 'Admin has renamed department <a href=\"/departments/3\">testing</a> to <a href=\"/departments/3\">dept. Administrativ</a>.', 'department', '3', null, '1', '3', 'unread', '2019-09-18 18:02:50', null);
+INSERT INTO `notification` VALUES ('6', null, 'Test published changes to procedure renamed procedure in department Backend Department renamed.', 'Test published changes to procedure <a href=\"/procedure/40\">renamed procedure</a> in department <a href=\"/departments/2\">Backend Department renamed</a>.', 'department', '2', '40', '2', '1', 'read', '2019-09-02 16:45:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('7', null, 'Test published changes to procedure renamed procedure in department Backend Department renamed.', 'Test published changes to procedure <a href=\"/procedure/40\">renamed procedure</a> in department <a href=\"/departments/2\">Backend Department renamed</a>.', 'department', '2', '40', '2', '5', 'unread', '2019-09-02 16:45:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('81', null, 'messages.procedure.submitApproval', 'messages.procedure.submitApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 10:14:52', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('82', null, 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:09:44', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('83', null, 'messages.procedure.requestApproval', 'messages.procedure.requestApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:10:13', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('84', null, 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:10:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('85', null, 'messages.procedure.cancelRequest', 'messages.procedure.cancelRequest', 'procedure', null, '50', '2', '1', 'unread', '2019-09-17 11:10:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('86', null, 'messages.procedure.submitApproval', 'messages.procedure.submitApproval', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:12:46', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('87', null, 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:18:36', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('88', null, 'Test has requested an approval for procedure afjaklfj in department new department testingadfaf .', 'Test has requested an approval for procedure <a href=\"/procedure/50\">afjaklfj</a> in department <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:19:10', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('89', null, 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '5', 'unread', '2019-09-17 11:20:29', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('90', null, 'Test has canceled the approval request to you for procedure afjaklfj in department  new department testingadfaf .', 'Test has canceled the approval request to you for procedure <a href=\"/procedure/50\">afjaklfj</a> in department  <a href=\"/departments/4\">new department testingadfaf</a> .', 'procedure', null, '50', '2', '1', 'unread', '2019-09-17 11:20:29', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('91', null, 'Test has requested an approval for procedure contributor in department Backend Department renamed .', 'Test has requested an approval for procedure <a href=\"/procedure/51\">contributor</a> in department <a href=\"/departments/2\">Backend Department renamed</a> .', 'procedure', null, '51', '2', '1', 'unread', '2019-09-17 12:45:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('92', null, 'Test has requested an approval for procedure contributor in department Backend Department renamed .', 'Test has requested an approval for procedure <a href=\"/procedure/51\">contributor</a> in department <a href=\"/departments/2\">Backend Department renamed</a> .', 'procedure', null, '51', '2', '4', 'unread', '2019-09-17 12:45:40', '2019-09-19 12:43:21');
+INSERT INTO `notification` VALUES ('93', null, 'Admin has renamed department testing to dept. Administrativ.', 'Admin has renamed department <a href=\"/departments/3\">testing</a> to <a href=\"/departments/3\">dept. Administrativ</a>.', 'department', '3', null, '1', '3', 'unread', '2019-09-18 18:02:50', null);
+INSERT INTO `notification` VALUES ('94', '/departments/5', 'Admin published changes to procedure testing procedure admin in department admin department testingdaffaf .', 'Admin published changes to procedure <a href=\"/procedure/47\">testing procedure admin</a> in department <a href=\"/departments/5\">admin department testingdaffaf</a> .', 'department', '5', '47', '1', '6', 'unread', '2019-10-11 06:32:02', null);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -685,10 +688,10 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '1', 'Admin', 'admin@admin.com', 'users/default.png', null, '$2y$10$pLMnKiwv9orgII4CrXcMF.FtBo5dtm5JskbmvmtWjHUoFdDGGTt9e', 'euwWgvoTFTYEcYUIGwRJwCIg8F5w9x3u7zG3OrqiDNO1RvtwGkd7DyPXOvvD', null, '2019-07-25 21:37:39', '2019-09-19 10:15:26');
+INSERT INTO `users` VALUES ('1', '1', 'Admin', 'admin@admin.com', 'users\\October2019\\S4XkikXtNZRzQHheahBz.png', null, '$2y$10$pLMnKiwv9orgII4CrXcMF.FtBo5dtm5JskbmvmtWjHUoFdDGGTt9e', 'euwWgvoTFTYEcYUIGwRJwCIg8F5w9x3u7zG3OrqiDNO1RvtwGkd7DyPXOvvD', null, '2019-07-25 21:37:39', '2019-10-11 07:44:04');
 INSERT INTO `users` VALUES ('5', '1', 'Daniel Landa', 'danielracu189@gmail.com', 'users/default.png', null, '$2y$10$E35H3NuLPKaOAxkI4VcHB.Cw8pVD1kuEfKHRDCq5IZi/zFcdJIDa6', null, null, '2019-09-18 17:29:50', '2019-09-18 18:06:57');
-INSERT INTO `users` VALUES ('6', '2', 'Ciprian Duca', 'ciprian.duca@schwarzgruppeint.ro', 'users/default.png', null, '$2y$10$ufUxoZWDE8XDQLbtnLph.eMWx0RAISFSXhlhX4aw2OkRPlLlVuIsW', null, null, '2019-09-18 18:01:04', '2019-09-18 18:01:04');
-INSERT INTO `users` VALUES ('7', '2', 'amin shoukat', 'aminshoukat4@gmail.com', 'users/default.png', null, '$2y$10$udcC7S1FgRIvz5Ct7e7.LOuLXwqCVaZwZtB.1uYzMVqDRHtkU7Kti', null, null, '2019-09-19 09:54:23', '2019-09-19 10:01:43');
+INSERT INTO `users` VALUES ('6', '2', 'Ciprian Duca', 'ciprian.duca@schwarzgruppeint.ro', 'users/default.png', null, '$2y$10$pLMnKiwv9orgII4CrXcMF.FtBo5dtm5JskbmvmtWjHUoFdDGGTt9e', null, null, '2019-09-18 18:01:04', '2019-09-18 18:01:04');
+INSERT INTO `users` VALUES ('7', '2', 'amin shoukat', 'aminshoukat4@gmail.com', 'users\\October2019\\mhBa0sQWjE7H00CjZOLH.png', null, '$2y$10$udcC7S1FgRIvz5Ct7e7.LOuLXwqCVaZwZtB.1uYzMVqDRHtkU7Kti', null, null, '2019-09-19 09:54:23', '2019-10-11 07:14:23');
 
 -- ----------------------------
 -- Table structure for user_department
@@ -704,14 +707,15 @@ CREATE TABLE `user_department` (
   KEY `user_foreing` (`user_id`),
   CONSTRAINT `department_foreign_key` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_foreing` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_department
 -- ----------------------------
 INSERT INTO `user_department` VALUES ('1', '1', '2', 'publisher');
 INSERT INTO `user_department` VALUES ('4', '5', '2', 'contributor');
-INSERT INTO `user_department` VALUES ('9', '5', '3', 'publisher');
+INSERT INTO `user_department` VALUES ('9', '7', '3', 'publisher');
+INSERT INTO `user_department` VALUES ('10', '6', '5', 'publisher');
 
 -- ----------------------------
 -- Table structure for user_roles

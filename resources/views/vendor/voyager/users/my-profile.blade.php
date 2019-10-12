@@ -68,6 +68,15 @@
                                   <small>Leave empty to keep the same</small>
                                   <input type="password" class="form-control" name="password" value="">
                                </div>
+
+                               <div class="form-group  col-md-12 ">
+                                  <label class="control-label" for="name">Avatar</label>
+                                  <div data-field-name="avatar">
+                                     <a href="#" class="remove-single-image" style="position:absolute;"></a>
+                                     <img src="{{ Voyager::image($user->avatar) }}" style="max-width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
+                                  </div>
+                                  <input type="file" name="avatar" accept="image/*">
+                               </div>
                                
                             </div>
 

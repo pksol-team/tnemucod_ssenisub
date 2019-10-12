@@ -153,14 +153,10 @@
                                                       <?php foreach ($comments as $key => $comment): ?>
                                                         <li class="{{ $comment->user_id == Auth::user()->id ? 'out' : 'in' }}">
                                                            <div class="comment-content" id="comment-{{ $comment->id }}">
-                                                              <img src="{{ voyager_asset('images/captain-avatar.png') }}" class="avatar">
+                                                              <?php $user = User::findOrFail($comment->user_id); ?>
+                                                              <img src="{{ Voyager::image($user->avatar) }}" class="avatar">
                                                               <div class="message"><span class="arrow"></span>
-                                                                 <a class="name">
-                                                                  <?php
-                                                                   $user = User::find($comment->user_id);
-                                                                   echo $user->name;
-                                                                  ?>
-                                                                 </a><br>
+                                                                 <a class="name">{{ $user->name }}</a><br>
                                                                  <span class="comment-datestamp">
                                                                   {{ date('F d, Y g:i', strtotime($comment->created_at)) }}
                                                                  </span>
@@ -641,7 +637,7 @@
             var newComment = `
             <li class="out">
                <div class="comment-content" id="comment-`+response.comment_id+`">
-                  <img src="{{ voyager_asset('images/captain-avatar.png') }}" class="avatar">
+                  <img src="{{ Voyager::image(Auth::user()->avatar) }}" class="avatar">
                   <div class="message"><span class="arrow"></span>
                      <a class="name">`+response.user_name+`</a><br>
                      <span class="comment-datestamp">
@@ -790,10 +786,11 @@
                 var area_expand = 'false';
                 var tabStatus = '';
                 var accept = '';
-                var tabContent = `<div role="tabpanel" class="tab-pane `+tabStatus+`" id="by_`+val.procedure_data_id+`">
-                                    <input type="hidden" class="procedure_data_id" value="`+val.procedure_data_id+`" />
-                                      `+val.content+`
-                                        <a style="margin: 0 2px;" class="publish_prop" data-procedure_data_id="`+val.procedure_data_id+`" href="/block-proposals/`+val.procedure_data_id+`/publish"><button type="button" class="btn btn-success mark-as-accepted-proposal-button">Publish</button></a>`;
+                var tabContent = `
+                <div role="tabpanel" class="tab-pane `+tabStatus+`" id="by_`+val.procedure_data_id+`">
+                  <input type="hidden" class="procedure_data_id" value="`+val.procedure_data_id+`" />
+                    `+val.content+`
+                      <a style="margin: 0 2px;" class="publish_prop" data-procedure_data_id="`+val.procedure_data_id+`" href="/block-proposals/`+val.procedure_data_id+`/publish"><button type="button" class="btn btn-success mark-as-accepted-proposal-button">Publish</button></a>`;
 
                 if (val.status == 'accept') {
                   accept = `style="background: #2ecc71;"`;

@@ -720,3 +720,26 @@ span.toggle_down{
     min-height: unset;
     max-height: unset;
 }
+
+.app-container .content-container .side-menu .navbar-nav li a .title {
+    display: inline-block;
+}
+
+.hamburger.btn-link {
+    display: none;
+}
+
+@media (max-width:768px){
+    .hamburger.btn-link {
+        display: block;
+    }
+    .app-container .content-container .side-body.padding-top {
+        margin-left: unset;
+    }
+}
+
+@media (min-width:768px){
+    .app-container .content-container .side-body.padding-top {
+        margin-left: 235px !important;
+    }
+}

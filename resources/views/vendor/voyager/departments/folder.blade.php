@@ -180,7 +180,7 @@
                       <?php if (count($allProcNdFolds) > 0): ?>
                         <?php foreach ($allProcNdFolds as $key => $procNdFold): ?>
                           
-                          <tr>
+                          <tr class="procedure_department_listing">
                              <td><i data-help="browse-procedure-icon" class="{{ $procNdFold->type == 'folder' ? 'voyager-folder' : 'voyager-file-text' }}"></i></td>
                              <td>
                                 <!-- check favourite or not -->
@@ -462,6 +462,18 @@
 
         $('.breadcrumb_li').remove();
         $(breadcrumbs).insertAfter('li.department_li_breadcrumb');
+
+
+        $("#quick-filter").on("keyup", function() {
+           var $this = $(this);
+           var keywords = $this.val().toLowerCase();
+           if (keywords.trim().length == 0) {
+              $this.val('');
+           }
+           $(".procedure_department_listing").filter(function() {
+              $(this).toggle($(this).find('.item-name').text().toLowerCase().indexOf(keywords) > -1)
+           });
+        });
 
     </script>
 @stop
